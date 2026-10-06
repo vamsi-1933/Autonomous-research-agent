@@ -1,0 +1,10 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: research-agent-backend
+
+python:
+  agent:
+    url: ${PYTHON_AGENT_URL:http://localhost:8000}

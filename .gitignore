@@ -1,0 +1,10 @@
+.env 
+.env.production 
+node_modules/ 
+target/ 
+dist/ 
+*.jar 
+__pycache__/ 
+chroma_db/ 
+.venv/ 
+*.log

@@ -1,0 +1,31 @@
+# Python cache and virtual environments
+__pycache__
+*.pyc
+*.pyo
+.env
+.env.local
+venv/
+.venv/
+
+# Git and IDE files
+.git
+.gitignore
+.vscode/
+.idea/
+
+# Node modules (from frontend folder if accidentally included)
+node_modules/
+
+# Docker files themselves
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Test and documentation
+tests/
+docs/
+README.md
+LICENSE
+
+# ChromaDB data (mounted as volume, don't copy into image)
+chroma_db/

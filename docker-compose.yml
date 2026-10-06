@@ -1,0 +1,35 @@
+services:
+  # 1. React Frontend
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+  # 2. Spring Boot Backend
+  backend:
+    build: ./demo
+    ports:
+      - "8081:8081"
+    environment:
+      - PYTHON_AGENT_URL=http://python-agent:8000
+    depends_on:
+      python-agent:
+        condition: service_healthy  # Wait for health check to pass
+
+  # 3. Python LangGraph Agent
+  python-agent:
+    build: ./python_Agent
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env.production  
+    volumes:
+      - ./chroma_db:/app/chroma_db
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/docs')"]
+      interval: 5s
+      timeout: 3s
+      retries: 15          
+      start_period: 40s    
